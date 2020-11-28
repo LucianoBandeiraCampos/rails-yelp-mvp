@@ -10,6 +10,7 @@
 puts 'Cleaning the db...'
 
 Restaurant.destroy_all
+Review.destroy_all
 
 puts 'db is clean'
 
@@ -22,6 +23,12 @@ puts 'creating restaurants...'
     phone_number: Faker::PhoneNumber.phone_number,
     category: %w[chinese italian japanese french belgian].sample
   )
-
   puts "#{restaurant.id}-#{restaurant.name} was created"
 end
+
+500.times do
+  review = Review.create(
+  rating: rand(0..5),  
+  content: Faker::Restaurant.review 
+
+  )
